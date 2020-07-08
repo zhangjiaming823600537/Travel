@@ -1,22 +1,22 @@
 <template>
   <div>
-      <router-link
-        tag="div"
-        to='/'
-        v-show="showAbs"
-        class="header-abs">
-        <div class="iconfont header-abs-back">&#xe624;</div>
+    <router-link
+      tag="div"
+      to="/"
+      class="header-abs"
+      v-show="showAbs">
+      <div class="iconfont header-abs-back">&#xe624;</div>
+    </router-link>
+    <div
+      class="header-fixed"
+      v-show="!showAbs"
+      :style="opacityStyle"
+    >
+      <router-link to="/">
+        <div class="iconfont header-fixed-back">&#xe624;</div>
       </router-link>
-      <div
-        class="header-fixed"
-        v-show="!showAbs"
-        :style="opacityStyle"
-        >
-          <router-link to='/'>
-            <div class="iconfont header-fixed-back">&#xe624;</div>
-          </router-link>
-          景点详情
-      </div>
+      景点详情
+    </div>
   </div>
 </template>
 
@@ -44,10 +44,10 @@ export default {
       }
     }
   },
-  activated () {
+  mounted () {
     window.addEventListener('scroll', this.handleScroll)
   },
-  deactivated () {
+  unmounted () {
     window.removeEventListener('scroll', this.handleScroll)
   }
 }
